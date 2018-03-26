@@ -15,15 +15,4 @@ class Cell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var descLabel: UILabel!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        selectionStyle = .none
-    }
-    
-    struct Model {
-        var todo = [TodoList]()
-    }
-    
-    
-    
 }

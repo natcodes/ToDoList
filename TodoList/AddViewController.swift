@@ -10,22 +10,30 @@ import Foundation
 import UIKit
 
 class AddViewController: UIViewController {
+    
+    @IBOutlet weak var taskTextField: UITextField!
+    @IBOutlet weak var descField: UITextView!
+    @IBOutlet weak var datePick: UIDatePicker!
+    
+    // the following vars hold the edit values meanwhile the segue happens.
     var dateItem: Date?
     var taskItem: String?
     var descItem: String?
-    
-    var indexPath: NSIndexPath?
+    var indexPath: NSIndexPath? // no longer NSindex
     
     weak var delegate: AddItemTVCDelegate?
     
-    @IBOutlet weak var taskTextField: UITextField!
-    
-    @IBOutlet weak var descField: UITextView!
-    
-    @IBOutlet weak var datePick: UIDatePicker!
+    // loading the text to be edited onto the additemVC.
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        taskTextField.text = taskItem  //taskItem, descItem, dateItem are teh vars used when creating the item in the mainVC
+        descField.text = descItem  //
+        if let unwrapDate = dateItem { // safe unwrap non optional, Date
+            datePick.date = unwrapDate
+        }
+    }
     
     @IBAction func addButtonPressed(_ sender: UIButton) {
-        
         let utask = taskTextField.text!
         let udate = datePick.date
         let udesc = descField.text!
@@ -35,13 +43,5 @@ class AddViewController: UIViewController {
     @IBAction func cancelButtonPressed(_ sender: AddViewController) {
         delegate?.cancelButtonPressed(by:self)
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        taskTextField.text = taskItem
-        descField.text = descItem
-        if let unwrapDate = dateItem {
-            datePick.date = unwrapDate
-        }
-    }
+
 }

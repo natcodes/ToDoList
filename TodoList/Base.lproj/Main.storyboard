@@ -35,7 +35,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DQC-OP-acT">
-                                            <rect key="frame" x="293" y="21" width="42" height="21"/>
+                                            <rect key="frame" x="317" y="21" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -52,10 +52,12 @@
                                         <constraint firstItem="DQC-OP-acT" firstAttribute="top" secondItem="slF-r0-FXJ" secondAttribute="topMargin" constant="10" id="NdH-vB-snU"/>
                                         <constraint firstItem="DGe-I3-O7p" firstAttribute="leading" secondItem="slF-r0-FXJ" secondAttribute="leadingMargin" id="iv8-Q4-AyS"/>
                                         <constraint firstItem="DGe-I3-O7p" firstAttribute="top" secondItem="slF-r0-FXJ" secondAttribute="topMargin" constant="10" id="kwA-t5-Xc2"/>
-                                        <constraint firstItem="DQC-OP-acT" firstAttribute="trailing" secondItem="slF-r0-FXJ" secondAttribute="trailingMargin" constant="8" id="p6w-fu-LbN"/>
                                         <constraint firstItem="4UP-Qt-BDL" firstAttribute="leading" secondItem="slF-r0-FXJ" secondAttribute="leadingMargin" id="rR8-q6-2w6"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="DQC-OP-acT" secondAttribute="trailing" constant="16" id="hwE-zw-j2G"/>
+                                </constraints>
                                 <connections>
                                     <outlet property="dateLabel" destination="DQC-OP-acT" id="cLM-7n-Hcj"/>
                                     <outlet property="descLabel" destination="4UP-Qt-BDL" id="71I-IJ-QHd"/>
