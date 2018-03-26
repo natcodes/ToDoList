@@ -25,6 +25,7 @@ class AddViewController: UIViewController {
     @IBOutlet weak var datePick: UIDatePicker!
     
     @IBAction func addButtonPressed(_ sender: UIButton) {
+        
         let utask = taskTextField.text!
         let udate = datePick.date
         let udesc = descField.text!
@@ -35,4 +36,12 @@ class AddViewController: UIViewController {
         delegate?.cancelButtonPressed(by:self)
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        taskTextField.text = taskItem
+        descField.text = descItem
+        if let unwrapDate = dateItem {
+            datePick.date = unwrapDate
+        }
+    }
 }

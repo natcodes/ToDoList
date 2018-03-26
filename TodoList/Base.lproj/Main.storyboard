@@ -15,16 +15,16 @@
         <scene sceneID="AR3-Dj-Ngz">
             <objects>
                 <tableViewController id="4cb-a6-P9p" customClass="TodoListTableViewController" customModule="TodoList" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="dU3-n4-jeX">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="150" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="dU3-n4-jeX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="116" id="vdW-tn-ZzY" customClass="Cell" customModule="TodoList" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="116"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="Cell" rowHeight="150" id="vdW-tn-ZzY" customClass="Cell" customModule="TodoList" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="150"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vdW-tn-ZzY" id="slF-r0-FXJ">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="115.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="335" height="149.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DGe-I3-O7p">
@@ -35,13 +35,13 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DQC-OP-acT">
-                                            <rect key="frame" x="325" y="21" width="42" height="21"/>
+                                            <rect key="frame" x="293" y="21" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4UP-Qt-BDL">
-                                            <rect key="frame" x="16" y="74" width="42" height="21"/>
+                                            <rect key="frame" x="16" y="108" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -71,7 +71,7 @@
                     <navigationItem key="navigationItem" id="lSR-32-ISI">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="nFt-TS-fIt">
                             <connections>
-                                <segue destination="bSv-y6-uMJ" kind="presentation" id="IWH-If-KYv"/>
+                                <segue destination="bSv-y6-uMJ" kind="presentation" identifier="AddEditItemSegue" id="IWH-If-KYv"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -81,7 +81,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PFu-i4-wMN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="111" y="48"/>
+            <point key="canvasLocation" x="-223" y="-627"/>
         </scene>
         <!--Add View Controller-->
         <scene sceneID="XCV-jh-8Ob">
@@ -119,7 +119,7 @@
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Describe task" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="pAI-o7-Wjx">
                                 <rect key="frame" x="30" y="126" width="315" height="83"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -166,7 +166,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mcf-ou-6KA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1449" y="206"/>
+            <point key="canvasLocation" x="1818" y="-627"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zPJ-ki-H1A">
@@ -184,7 +184,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jtX-en-1Xp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-273" y="-750"/>
+            <point key="canvasLocation" x="-599" y="-1608"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jjH-bg-Bgw">
@@ -202,7 +202,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PWD-xx-DLI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="902" y="-627"/>
+            <point key="canvasLocation" x="774" y="-1100"/>
         </scene>
     </scenes>
 </document>

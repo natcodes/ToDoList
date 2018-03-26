@@ -12,9 +12,10 @@ import CoreData
 class TodoListTableViewController: UITableViewController, AddItemTVCDelegate {
     
     var todo = [TodoList]()
+    
     var managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
-    override func viewDidLoad() { //if 0 items in the db then custom cells wont render.
+    override func viewDidLoad() {
         super.viewDidLoad()
         fetchAll()
     }
@@ -29,7 +30,8 @@ class TodoListTableViewController: UITableViewController, AddItemTVCDelegate {
     }
     
     // ===============  CRUD ========================================
-                    // CREATE
+    
+                        // CREATE
     func itemSaved(by controller: AddViewController, with task: String, date: Date, desc: String, at indexPath: NSIndexPath?) {
         if let ip = indexPath {
             let addition = todo[ip.row]
@@ -38,11 +40,10 @@ class TodoListTableViewController: UITableViewController, AddItemTVCDelegate {
             addition.desc = desc;
         }else {
             let item = NSEntityDescription.insertNewObject(forEntityName: "TodoList", into: managedObjectContext) as! TodoList
-            print(item)
             item.task = task
             item.date = date
             item.desc = desc
-//            todo.append(item)
+            todo.append(item)
         }
         do {    //DO TRY TO SAVE ITEM
             try managedObjectContext.save()
@@ -51,11 +52,27 @@ class TodoListTableViewController: UITableViewController, AddItemTVCDelegate {
         }
         dismiss(animated: true, completion: nil)
     }
-                    // REMOVE
-    
-    
-    
-                        // UPDATE
+                    // UPDATE segue and DELETE action
+
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let editAction = UITableViewRowAction(style: .default, title: "Edit") {(action, indexPath)-> Void in
+            self.performSegue(withIdentifier: "AddEditItemSegue", sender: indexPath)
+            print("edit button pressed")
+            }
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") {(action, indexPath) -> Void in
+            let deleteItem = self.todo[indexPath.row]
+            self.managedObjectContext.delete(deleteItem)
+            do {
+                try self.managedObjectContext.save()
+            } catch {
+                print("\(error)")
+            }
+            self.todo.remove(at: indexPath.row)
+            tableView.reloadData()
+        }
+        editAction.backgroundColor = UIColor.blue
+        return [editAction, deleteAction]
+    }
     
     @IBOutlet var todoListTableView: UITableView!
  
@@ -77,47 +94,62 @@ class TodoListTableViewController: UITableViewController, AddItemTVCDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let navController = segue.destination as! UINavigationController
         let addController = navController.topViewController as! AddViewController
-        addController .delegate = self
+        addController.delegate = self
         
-//        if let indexPath = sender as? NSIndexPath {
-//            let todos = todo[indexPath.row]
-        
+        if let indexPath = sender as? NSIndexPath {
+            let todos = todo[indexPath.row]
+            addController.taskItem = todos.task!
+            addController.descItem = todos.desc!
+            addController.dateItem = todos.date!
+            addController.indexPath = indexPath
+        }
     }
     
+    // sets the format and info for the labels and cell in main VC
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! Cell
         let todoItem = todo[indexPath.row]
-        cell.taskLabel.text = todoItem.task
+            
+        cell.taskLabel?.text = todoItem.task
+            
         let dateFormatter = DateFormatter()
         dateFormatter.timeStyle = .none
         dateFormatter.locale = Locale(identifier: "en_US")
         dateFormatter.dateFormat = "dd/MM/yyyy"
         let formattedDate = dateFormatter.string(from: todoItem.date!)
-        print(formattedDate)
+//        print(formattedDate)
         cell.dateLabel.text = formattedDate
+            
         cell.descLabel.text = todoItem.desc
-        
-        
-//        if todoItem.containsObject(self.todo.objectAtIndex(indexPath.row) as! String)
-//        {
-//            cell.accessoryType = .checkmark
-//        }
-//        else {
-//            cell.accessoryType = .none
-//        }
+
+        if  todoItem.selected  == true {
+            cell.accessoryType = .checkmark
+        } else {
+            cell.accessoryType = .none
+        }
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let thisTodo = self.todo[indexPath.row]
+        print(thisTodo.selected)
+        
+        if thisTodo.selected == true{
+            thisTodo.selected = false
+        } else {
+            thisTodo.selected = true
+        }
+//        print("row selected")
+        do {
+            try self.managedObjectContext.save()
+        } catch {
+            print("\(error)")
+        }
+        tableView.reloadData()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return todo.count
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.cellForRow(at: indexPath as IndexPath)?.accessoryType = .checkmark
-    }
-    
-    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        tableView.cellForRow(at: indexPath as IndexPath)?.accessoryType = .none
     }
     
     override func didReceiveMemoryWarning() {
